@@ -1,20 +1,11 @@
 var express = require('express');
 
-// Create our app
+// Create our app;
 var app = express();
-const PORT = process.env.PORT || 3000;
-
-// MiddelWare; if it is http:
-app.use(function (req, res, next){
-    if (req.headers['x-forwarded-proto'] === 'http') {
-        next();
-    } else {
-        res.redirect('http://' + req.hostname + req.url);
-    }
-});
+const PORT = process.env.PORT || 4000;
 
 app.use(express.static('public'));
 
-app.listen(PORT, function () {
-  console.log('Express server is up on port ' + PORT);
+app.listen(PORT, function() {
+    console.log(`Express Server On Port: ${PORT}`);
 });
