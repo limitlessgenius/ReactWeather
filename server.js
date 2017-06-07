@@ -4,17 +4,17 @@ var app = express();
 const PORT = process.env.PORT || 4000;
 
 app.use(function (req, res, next) {
-    if (req.headers['x-forwarded-proto'] === 'http') {
-        next();
-    } else {
+    if (req.headers['x-forwarded-proto'] === 'https') {
         res.redirect('http://' + req.hostname + req.url);
+    } else {
+        next();
     }
 });
 
 app.use(express.static('public'));
 
 app.listen(PORT, function() {
-    console.log(`Express Server On Port: ${PORT}`);
+    console.log('Express Server On Port ' + PORT);
 });
 
 // var express = require('express');
